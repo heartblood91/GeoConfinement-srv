@@ -1,0 +1,16 @@
+{
+  "name": "geoconfinement-srv",
+  "version": "1.0.0",
+  "description": "serveur backend pour les notifications de l'appli Geoconfinement",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Cédric F.",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "expo-server-sdk": "^3.5.0",
+    "express": "^4.17.1"
+  }
+}
