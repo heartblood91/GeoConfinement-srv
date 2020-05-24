@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "set NODE_ENV=developpement && node index.js",
-    "prod": "set NODE_ENV=production && node index.js"
+    "prod": "export NODE_ENV=production && node index.js"
   },
   "author": "Cédric F.",
   "license": "ISC",
