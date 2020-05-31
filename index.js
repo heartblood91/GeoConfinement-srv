@@ -27,18 +27,25 @@ expressServer.use(cors());
 expressServer.use(morgan("combined"));
 expressServer.use(bodyParser.json({ type: "*/*" }));
 
+//Lance le serveur sur le port définit
 expressServer.listen(PORT, () => {
   console.log("Serveur en écoute sur le port: ", PORT);
 
+  // Requête POST pour récupérer le type, le token et la clé d'API afin d'envoyer une notification
   expressServer.post("/sendNotification", function (req, res) {
     const { token, type, secret } = req.body;
+
+    // Vérification de la clé d'API
     if (secret === API_KEY) {
+      // Vérification du token
       if (!Expo.isExpoPushToken(token)) {
         console.log("Token invalide");
         res.send({ err: "Token invalide" });
       } else {
+        // Construction du message selon le type
         const messages = renderMessages(token, type);
 
+        // Envoie du message
         expo
           .sendPushNotificationsAsync(messages)
           .then((ticket) => {
@@ -56,6 +63,7 @@ expressServer.listen(PORT, () => {
   });
 });
 
+// Permet de construire le message selon le type
 const renderMessages = (token, type) => {
   let messages = [
     {
